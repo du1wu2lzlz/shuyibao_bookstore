@@ -1,5 +1,10 @@
 <template>
 <v-container class="index">
+  
+
+  <div class="layer_logo">
+    <a href="www.atschool.com.cn/#/about-us" title="出路数据，无需基础，三个月学习，给你一生的工作！"><img style="width:180px;height:180px;" alt=""></a>
+  </div>
   <search></search>
   <v-row class="menu-container">
     <v-col xs2>
@@ -48,7 +53,6 @@
   </div>
 </v-container>
 </template>
-
 <script>
 import { mapState, mapActions } from 'vuex'
 import Search from './Search'
@@ -105,4 +109,21 @@ export default {
 .text-center {
   text-align: center;
 }
+.layer_logo {
+  display: block;
+    width: 50%;
+    height: 180px;
+    width: 180px;
+    background: url(../assets/school.png) center center no-repeat;
+    background-size: left;
+    position: fixed;
+    top: 22%;
+    left: 5%;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+a:hover{
+ color: red;
+}
+
 </style>
