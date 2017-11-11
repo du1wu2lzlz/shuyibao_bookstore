@@ -2,19 +2,11 @@
   <v-toolbar-items style="width: 100%;">
     <v-toolbar-item style="margin-right: 70%;">
       <router-link to="/" class="link" @mouseover.native="show" @mouseout.native="unshow">二手交易平台
-       <v-icon>home</v-icon>
+       <v-icon >home</v-icon>
       </router-link>
-       <div v-if='isShow' >
-         <p>首页</p>
-       </div>
+       
     </v-toolbar-item>
     <v-toolbar-item>
-      <div >
-        <v-btn @click.native="showname()">注销</v-btn>
-        <span >
-        {{username}}
-        </span>
-      </div>
       <router-link to="/login" class="link" @mouseover.native="turnlogred" @mouseout.native='turnlogwhite'>
        <div v-bind:style='styleObject.log'>
         <body-2>登陆</body-2>

@@ -102,7 +102,6 @@
 <script>
 import { mapActions } from 'vuex'
 import orderStatusCodeToText from '../utils/orderStatusCodeToText'
-
 export default {
   name: 'my-orderList',
   mounted () {

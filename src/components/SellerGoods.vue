@@ -54,9 +54,9 @@ export default {
       headers: [{
         text: '书名'
       }, {
-        text: '单价'
-      }, {
         text: '数量'
+      }, {
+        text: '单价'
       }, {
         text: '销量'
       }, {

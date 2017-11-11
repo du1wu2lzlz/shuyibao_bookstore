@@ -3,7 +3,7 @@
     &copy 2017 书易宝团队
     <router-link to="/about-us"  >
       <v-btn style="margin-left:80%" class="blue white--text">
-        与我们联系
+        数据库提高班
       <v-icon right>email</v-icon>
       </v-btn>
     </router-link>

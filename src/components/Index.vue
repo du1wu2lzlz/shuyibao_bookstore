@@ -3,7 +3,10 @@
   
 
   <div class="layer_logo">
-    <a href="www.atschool.com.cn/#/about-us" title="出路数据，无需基础，三个月学习，给你一生的工作！"><img style="width:180px;height:180px;" alt=""></a>
+    <a href="#/about-us" title="出路数据，无需基础，三个月学习，给你一生的工作！"><img style="width:180px;height:180px;" alt=""></a>
+  </div>
+  <div class="layer_logo1">
+    <a href="#/about-us" title="出路数据，无需基础，三个月学习，给你一生的工作！"><img style="width:180px;height:180px;" alt=""></a>
   </div>
   <search></search>
   <v-row class="menu-container">
@@ -110,7 +113,7 @@ export default {
   text-align: center;
 }
 .layer_logo {
-  display: block;
+    display: block;
     width: 50%;
     height: 180px;
     width: 180px;
@@ -121,6 +124,21 @@ export default {
     left: 5%;
     background-size: cover;
     -webkit-background-size: cover;
+   
+}
+.layer_logo1{
+    display: block;
+    width: 50%;
+    height: 180px;
+    width: 180px;
+    background: url(../assets/school.png) center center no-repeat;
+    background-size: left;
+    position: fixed;
+    top: 22%;
+    left: 85%;
+    background-size: cover;
+    -webkit-background-size: cover;
+   
 }
 a:hover{
  color: red;

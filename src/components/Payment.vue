@@ -71,9 +71,25 @@
             收货地址：{{order.address}}
           </v-col>
         </v-card-row>
-        <div class="text-xs-right">
-          <v-btn primary dark @click.native="submit">确认支付</v-btn>
-        </div>
+        <v-layout row justify-right>
+          <v-dialog  persistent>
+            <v-card  style="height: 370px;">
+              <v-card-title class="headline" style="padding-left:380px">请完成扫码支付</v-card-title>
+              <v-card-text  style="padding-left:360px">
+                请扫描下方二维码完成支付(并附上您的用户名，谢谢！)
+                
+              </v-card-text>
+              <div style="width:300px; height:150px; text-align:center; padding-top:15px;">
+                   <img style="padding-left:400px" src="../assets/test.png"  />
+              </div>
+              <v-card-actions>
+                 <v-spacer></v-spacer>
+              <v-btn class="blue--text darken-1" flat @click.native="dialog = false" style="padding-left: 639.722px">关闭</v-btn>
+              <v-btn class="blue--text darken-1" flat @click.native="submit()">完成支付</v-btn>
+             </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-layout>
       </v-card>
     </div>
   </v-container>
@@ -94,7 +110,8 @@ export default {
   data () {
     return {
       orderStatusCodeToText,
-      orderList: []
+      orderList: [],
+      dialog: false
     }
   },
   methods: {

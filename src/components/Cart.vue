@@ -6,6 +6,7 @@
         <th>
           <v-icon class="blue--text text--darken-2 pointer" @click.native="toggleAllCartItemStatus(isAllSelected)">
             {{isAllSelected ? "check_box" : "check_box_outline_blank"}}
+            <p>全选</p>
           </v-icon>
         </th>
         <th v-for="header in headers" v-text="header"></th>

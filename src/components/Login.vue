@@ -13,8 +13,9 @@
             v-model="form.username"
             name="username"
             type="text"
-            label="用户名"
+            label="用户名/手机号/邮箱"
             placeholder="请输入用户名"
+            prepend-icon="account_box"
           ></v-text-field>  
           <span class="red--text">{{userErrors.errorText}}</span>  
           </v-col>
@@ -25,6 +26,7 @@
             type="text"
             label="密码"
             placeholder="请输入密码"
+            prepend-icon="lock_open"
           ></v-text-field>
           <span class="red--text" >{{passwordErrors.errorText}}</span>
           </v-col>
@@ -37,6 +39,7 @@
             type="text"
             label="验证码"
             placeholder="请输入验证码"
+            prepend-icon="check_circle"
           ></v-text-field>
           <span class="red--text" >{{checkCodeErrors.errorText}}</span> 
         </v-col>
@@ -56,7 +59,7 @@
               </v-card-row>
               <v-card-row>
                 <v-card-text>
-                  <v-text-field label="用户名" placeholder="请输入您的用户名" v-model="username" required>
+                  <v-text-field label="用户名/输入您的用户名" placeholder="请输入您的用户名" v-model="username" required>
                   </v-text-field>
                 </v-card-text>
               </v-card-row>
@@ -174,8 +177,14 @@ export default {
       let errorText
       if (this.form.username === '') {
         errorText = ''
-      } else if (!/@/g.test(this.form.username)) {
-        errorText = '请输入正确的邮箱'
+      } else if (typeof (this.form.username) === 'number') {
+        if (!/^1[0-9]{10}/.test(this.form.username)) {
+          errorText = '请输入正确的手机号'
+        }
+      } else if (typeof (this.form.username) === 'string') {
+        if (!/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(this.form.username)) {
+          errorText = '请输入正确的邮箱或手机号'
+        }
       }
       return {
         errorText
@@ -197,7 +206,7 @@ export default {
       if (this.form.password === '') {
         errorText = ''
       } else if (!/^\w{1,6}$/g.test(this.form.password)) {
-        errorText = '请输入6-16位密码，区分大小写，不能使用空格！'
+        errorText = '，不能使用空格！'
       }
       return {
         errorText

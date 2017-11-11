@@ -34,6 +34,7 @@ const actions = {
     })
   },
   deleteCartItem ({ commit }, goodsId) {
+    alert('删除成功')
     commit(CART.DELETE, goodsId)
   },
   toggleAllCartItemStatus ({ commit }, isAllSelected) {
