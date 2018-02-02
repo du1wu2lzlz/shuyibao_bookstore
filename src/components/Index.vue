@@ -86,7 +86,18 @@ export default {
     ]),
     search (e) {
       this.$store.dispatch('goodsSearch', {types: [{id: e.target.id}]})
+    },
+    //原理是取中间的毫秒数，再转换成js的Date类型
+   ChangeDateFormat(val) {
+    if (val != null) {
+        var date = new Date(parseInt(val.replace("/Date(", "").replace(")/", ""), 10));
+        //月份为0-11，所以+1，月份小于10时补个0
+        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        return date.getFullYear() + "-" + month + "-" + currentDate;
     }
+    return "";
+  }
   }
 }
 </script>
