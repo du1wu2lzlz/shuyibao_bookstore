@@ -24,7 +24,7 @@
             v-model="form.password"
             name="password"
             type="text"
-            label="密码"
+       0     label="密码"
             placeholder="请输入密码"
             prepend-icon="lock_open"
           ></v-text-field>
@@ -44,8 +44,8 @@
           <span class="red--text" >{{checkCodeErrors.errorText}}</span> 
         </v-col>
         <v-col xs4>
-          <img id="checkcodeCreate" src= "/auth/getCheckCode.do" alt="验证码">
-          
+          <!-- <img id="checkcodeCreate" src= "/auth/getCheckCode.do"  alt="验证码"> -->
+          <img :src="codeImg" id="checkcodeCreate" v-on:click="change()" > 
         </v-col>
       </v-row>
       <v-row>
@@ -88,7 +88,10 @@
 
 <script>
 import { mapActions } from 'vuex'
+import axios from 'axios'
 import Dialog from './alert/dialog.vue'
+import Router from 'vue-router'
+const router = new Router()
 export default {
   components: {
     MyDialog: Dialog
@@ -96,6 +99,7 @@ export default {
   name: 'login',
   data () {
     return {
+      codeImg: '',
       errorText: '',
       alert: false,
       formItems: [
@@ -124,27 +128,63 @@ export default {
       showMessage: false
     }
   },
+  mounted(){
+    this.init();
+    this.$nextTick();
+  },
   methods: {
     ...mapActions([
       'findPassword'
     ]),
+    init() {
+     this.codeImg = 'http://localhost:8080/auth/getCheckCode.do'
+     const router = new Router()
+    },
+    change(){
+        var _this = this;
+        axios.get('/auth/getCheckCode.do').then(function(res) {
+          
+         _this.codeImg = 'http://localhost:8080'+res.config.url+'?='+Math.random()
+        })
+      },
+    open() {
+        this.$message({
+          message: '登陆成功',
+          type: 'success'
+        });
+      },
     submit () {
       var username = this.form.username
       var pass = this.form.password
       var checkcode = this.form.checkCode
+      var _this = this;
       if (!this.check({
         username: username,
         pass: pass,
         checkcode: checkcode
       })) return
-      this.$store.dispatch('userLogin', this.form).then(res => {
-        if (res.data.status === 200) {
-          this.showMessage = true
-          setTimeout(() => {
-            this.showAddMessage = false
-          }, 2000)
-        }
+      // this.$store.dispatch('userLogin', this.form).then(function(res) {
+      //   console.log(res)
+         
+      //   var _this = this
+      //   if (res.data.status === 200) {
+      //      _this.open();
+          
+      //      console.log(11111)
+      //   }
+      // })
+      //TODO 权限不同 跳转不同
+      axios.post('auth/login.do',_this.form).then(function(res){
+        console.log(res)
+         if (res.data.status === 200) {
+           router.push('/')
+           _this.open();
+           $('ul li:nth-child(2) body-2').html('欢迎'+''+res.data.data.username)
+           console.log(res.data.data.username)
+           $('ul li:nth-child(3)').hide();
+         }
       })
+  
     },
     check (obj) {
       if (this.isEmpty(obj.username)) {
