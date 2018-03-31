@@ -142,9 +142,9 @@ export default {
     },
     change(){
         var _this = this;
-        axios.get('/auth/getCheckCode.do').then(function(res) {
+        axios.get('/auth/getCheckCode.dowww.atshool.com.cn').then(function(res) {
           
-         _this.codeImg = 'http://localhost:8080'+res.config.url+'?='+Math.random()
+         _this.codeImg = 'www.atshool.com.cn'+res.config.url+'?='+Math.random()
         })
       },
     open() {
@@ -161,20 +161,12 @@ export default {
       if (!this.check({
         username: username,
         pass: pass,
-        checkcode: checkcode
-      })) return
-      // this.$store.dispatch('userLogin', this.form).then(function(res) {
-      //   console.log(res)
-         
-      //   var _this = this
-      //   if (res.data.status === 200) {
-      //      _this.open();
-          
-      //      console.log(11111)
-      //   }
-      // })
-      //TODO 权限不同 跳转不同
-      axios.post('auth/login.do',_this.form).then(function(res){
+        checkcode: checkcode})) 
+      {
+        return false
+
+      }else{
+         axios.post('auth/login.do',_this.form).then(function(res){
         console.log(res)
          if (res.data.status === 200) {
            router.push('/')
@@ -182,9 +174,14 @@ export default {
            $('ul li:nth-child(2) body-2').html('欢迎'+''+res.data.data.username)
            console.log(res.data.data.username)
            $('ul li:nth-child(3)').hide();
+         }else{
+           alert(res.data.msg)
          }
       })
-  
+    }
+     
+      //TODO 权限不同 跳转不同
+     
     },
     check (obj) {
       if (this.isEmpty(obj.username)) {
@@ -246,7 +243,7 @@ export default {
       if (this.form.password === '') {
         errorText = ''
       } else if (!/^\w{1,6}$/g.test(this.form.password)) {
-        errorText = '，不能使用空格！'
+        errorText = '请输入6-16位密码，区分大小写，不能使用空格！'
       }
       return {
         errorText
