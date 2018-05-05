@@ -75,3 +75,13 @@ plugins: [
 ```
 + 引入element-UI
 [这里](https://jingyan.baidu.com/article/a17d5285c85acb8098c8f204.html)
+
+## 更新记录
+```js
++ 18/5/5 更新
+  本次更新:  
+    1. 首页布局UI优化 间距问题 双滚动条等问题修复
+    2. 登录页面修改 引入element-UI 新增登录提示信息
+    3. 注册页面修改 验证加入 提示信息增加
+    4. 验证码点击刷新 
+```
