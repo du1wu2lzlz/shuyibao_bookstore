@@ -1,5 +1,5 @@
 <template>
-  <v-app top-toolbar footer>
+  <v-app top-toolbar footer style="overflow: hidden;">
     <header>
       <v-toolbar class="blue">
         <v-toolbar-logo></v-toolbar-logo>
