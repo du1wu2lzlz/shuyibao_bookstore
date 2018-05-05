@@ -1,3 +1,6 @@
+##  项目地址
+    www.atschool.com.cn
+    
 ## 二手书交易系统前端
 
 > 二手书交易系统前端
@@ -48,6 +51,8 @@ npm test
     ```
 
     需要注意的是，修改的属性只有docBase，path，之后增加debug属性，别的属性维持原状，比如source以各自的为准
+ 6. 数据库配置
+    reusebook/Java Resources/src/main/resources/conf/constant.properties
 
 
 ## 前端引入jquery 
@@ -86,3 +91,6 @@ plugins: [
     4. 验证码点击刷新 
     5. 新增 jQuery 库 和 element-UI 库 支持全局使用 
 ```
+## 说明
+   上线时候记得更改url路径
+   
