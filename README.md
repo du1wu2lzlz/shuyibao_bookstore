@@ -92,5 +92,9 @@ plugins: [
     5. 新增 jQuery 库 和 element-UI 库 支持全局使用 
 ```
 ## 说明
-   上线时候记得更改url路径
+   上线时候记得更改url路径  
+   预览账号:
+   du1wu2lzlz  
+   602602  
+   
    
