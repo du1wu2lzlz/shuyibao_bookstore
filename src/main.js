@@ -6,6 +6,12 @@ import App from './App'
 import store from './store'
 import router from './router'
 import 'vuetify/dist/vuetify.min.css'
+import $ from 'jquery'
+import ElementUI from 'element-ui'
+
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
 
 Vue.use(Vuetify)
 
@@ -17,3 +23,4 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
