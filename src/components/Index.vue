@@ -87,6 +87,9 @@ export default {
     search (e) {
       this.$store.dispatch('goodsSearch', {types: [{id: e.target.id}]})
     },
+    redirectToGoodsDetail (indexData) {
+      this.$store.dispatch('redirectToGoodsDetail',  indexData)
+    }
     //原理是取中间的毫秒数，再转换成js的Date类型
    ChangeDateFormat(val) {
     if (val != null) {
