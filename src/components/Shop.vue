@@ -61,7 +61,11 @@ export default {
   methods: {
     ...mapActions([
       'getShopBySellerId'
-    ])
+    ]),
+    redirectToGoodsDetail (shopData) {
+      console.log(shopData);
+      this.$store.dispatch('redirectToGoodsDetail', shopData)
+    }
   }
 }
 </script>
