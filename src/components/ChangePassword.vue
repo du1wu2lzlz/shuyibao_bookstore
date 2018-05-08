@@ -35,7 +35,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-
+import { Notification  } from 'element-ui';
 export default {
   name: 'change-password',
   data () {
@@ -66,7 +66,23 @@ export default {
     ]),
     submit () {
       this.updatePassword(this.fields).then((response) => {
-        alert('修改密码成功！')
+        console.log('response',response);
+       if(response.status == 200){
+            Notification({
+                      message: '修改密码成功！',
+                      type: 'success',
+                      duration: 2000,
+                      position:'top-right'
+            })
+       }else if(response.status == 400){
+            Notification({
+                      message: '"旧密码输入错误"',
+                      type: 'warning',
+                      duration: 2000,
+                      position:'top-right'
+            })
+       }
+       return
       })
     }
   }
