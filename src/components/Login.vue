@@ -91,6 +91,7 @@ import { mapActions } from 'vuex'
 import axios from 'axios'
 import Dialog from './alert/dialog.vue'
 import Router from 'vue-router'
+import { Notification  } from 'element-ui';
 const router = new Router()
 export default {
   components: {
@@ -166,21 +167,54 @@ export default {
         return false
 
       }else{
-         axios.post('auth/login.do',_this.form).then(function(res){
+        axios.post('auth/login.do',_this.form).then(function(res){
         console.log(res)
-         if (res.data.status === 200) {
-           router.push('/')
-           _this.open();
-           $('ul li:nth-child(2) body-2').html('欢迎'+''+res.data.data.username)
-           console.log(res.data.data.username)
-           $('ul li:nth-child(3)').hide();
-         }else{
-           alert(res.data.msg)
-         }
-      })
-    }
-     
-      //TODO 权限不同 跳转不同
+        // if(res.data.data.id === 'ad1'){
+        //       router.push('/user-manager');
+        //       _this.open();
+        // }else{
+
+        //     if (res.data.status === 200) {
+        //               router.push('/')
+        //               _this.open();
+        //               $('ul li:nth-child(2) body-2').html('欢迎'+''+res.data.data.username)
+        //               console.log(res.data.data.username)
+        //               $('ul li:nth-child(3)').hide();
+        //             }else{
+        //               alert(res.data.msg)
+        //             }
+        // }
+        let role =  res.data.other;
+        if(res.data.status === 200){
+            if(role === "Admin"){
+              router.push('/user-manager');
+              Notification({
+                      message: '欢迎超级管理员登陆！',
+                      type: 'success',
+                      duration: 2000,
+                      position:'top-right'
+              })
+            }else if(role === "Seller"){
+              router.push('/seller-goods');
+              Notification({
+                      message: '欢迎卖家登陆！',
+                      type: 'success',
+                      duration: 2000,
+                      position:'top-right'
+              })
+            }else if(role === "User"){
+              router.push('/');
+              Notification({
+                      message: '已登陆！',
+                      type: 'success',
+                      duration: 2000,
+                      position:'top-right'
+              })
+            }
+        }else{
+               alert(res.data.msg);
+        }
+      }
      
     },
     check (obj) {
